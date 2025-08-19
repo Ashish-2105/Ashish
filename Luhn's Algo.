@@ -1,0 +1,40 @@
+import java.util.*;
+public class luhnsalgo {
+
+    public static void isValid(String cardNumber) {
+        int n = cardNumber.length();
+        int sum = 0;
+        if (n < 13 || n > 19) {
+            System.out.println("Invalid Credit Card Number");
+            return;
+        }
+
+        for (int i = n - 1; i >= 0; i--) {
+            int curr = Character.getNumericValue(cardNumber.charAt(i));
+
+            int rightPos = n - i; 
+            if (rightPos % 2 == 0) {  
+                curr *= 2;
+                if (curr > 9) {
+                    curr -= 9;
+                }
+            }
+            sum += curr;
+        }
+
+        if (sum % 10 == 0) {
+            System.out.println("Credit Card is VALID");
+        } else {
+            System.out.println("Credit Card is INVALID");
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter your credit card number: ");
+        String card = sc.nextLine();
+
+        isValid(card);
+    }
+}
